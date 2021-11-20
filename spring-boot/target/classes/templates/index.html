@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<htmlxmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Create/View Itineraries</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form action="#" th:action="@{/addCityToItinerary}" th:object="${cityDetails}" method="post">
+<div align="center">
+	<h2 font="Arial">Create Itinerary</h2>
+</div >
+<div align="center">
+	
+	 	    <table>
+		    	<tr>
+		    		<td><label for="itineraryName">Itinerary Name</label></td>
+		    		<td><input type="text" th:field="*{itineraryName}" id="itineraryName" placeholder="Enter Itinerary name"></td>
+		    	</tr>
+		    	<tr>
+		    		<td><label for="cityName">City</label></td>
+		    		<td><input type="text" th:field="*{cityName}" id="cityName" placeholder="Enter City name"></td>
+		    	</tr>
+		    	<tr>
+		    		<td><label for="cityDate">Date</label></td>
+		    		<td><input type="text" th:field="*{cityDate}" id="cityDate" placeholder="DD/MM/YYYY"></td>
+		    	</tr>
+		    </table><br>
+		    <input type="submit" value="Add City">
+		    <br>   
+	
+	</div>
+	<div>
+		<br><br>
+	</div>
+	<div align="center">
+		
+		 <p>Itinerary <span th:text="${itineraryName}"></span></p>
+		
+		<table border=1>
+			<tr>
+				<td>City Name</td>
+				<td>Date</td>
+				<td>Country Code</td>
+				<td>Temperature</td>
+				<td>Clouds</td>
+			</tr>
+			<tr th:each="city : ${cities}">
+				<td th:text="${city.cityName}"></td>
+				<td th:text="${city.cityDate}"></td>
+				<td th:text="${city.countryCode}"></td>
+				<td th:text="${city.temperature}"></td>
+				<td th:text="${city.clouds}"></td>
+			</tr>
+		</table>
+	</div>
+	<br><br>
+	<div align="center">
+		<p>
+   			List of Itineraries
+		</p>
+		<table>
+			<tr th:each="itinerary : ${itineraries}">
+				<td>
+						<a href="index.html" th:href="@{/viewItinerary/__${itinerary.id}__}"><small th:text="${itinerary.itineraryName}"></small></a>
+				</td>	
+			</tr>
+		</table>
+	</div>
+	</form>
+</body>
+</html>
